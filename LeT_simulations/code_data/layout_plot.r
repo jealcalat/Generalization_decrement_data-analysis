@@ -2,56 +2,6 @@ library(tidyverse)
 source('fwhm.R')
 
 load('LeT_PeakSameSD.RData')
-sesiones = 100
-df = data.frame()
-fwhm1 = c()
-fwhm2 = c()
-peak1 = c()
-peak2 = c()
-i1 = c()
-i2 = c()
-
-for (i in 20:sesiones) {
-  R1 = sL[[i]][['R1p']][ ,1:180]
-  R2 = sL[[i]][['R2p']][ ,1:180]
-  
-  Wn1 = sL[[i]][['Wn1']][1:180]
-  # Wn2 = sL[[i]][['Wn2']][1:180]
-  iriD = sL[[i]][['iri1']]
-  iriIm = sL[[i]][['iri2']]
-  
-  i1 = c(i1, iriD)
-  i2 = c(i2, iriIm)
-  
-  sumsR1 = colSums(R1)
-  sumsR2 = colSums(R2)
-  
-  d1 = density(sumsR1)
-  d2 = density(sumsR2)
-  
-  ft1 = fwhm(d1$x, d1$y)
-  ft2 = fwhm(d2$x, d2$y)
-  
-  fwhm1 = c(fwhm1, ft1$fwhm)
-  peak1 = c(peak1, ft1$peak)
-  
-  fwhm2 = c(fwhm2, ft2$fwhm)
-  peak2 = c(peak2, ft2$peak)
-  
-  dfTmp = data.frame(bin = 1:180,
-                     R1 = sumsR1,
-                     R2 = sumsR2,
-                     Wn1 = Wn1,
-                     #Wn2 = Wn2,
-                     sesion = i)
-  df = rbind(df, dfTmp)
-}
-
-df_summary = df %>%
-  group_by(bin) %>%
-  summarise(r1 = mean(R1) / 180,
-            r2 = mean(R2) / 180,
-            wn1 = mean(Wn1)) 
 
 pdf('SameRate.pdf', width = 6, height = 6, pointsize = 12)
 
@@ -157,56 +107,6 @@ pdf('SameRate.pdf', width = 6, height = 6, pointsize = 12)
 dev.off()
 
 load('LeT_PeakDiffSD.RData')
-sesiones = 100
-df = data.frame()
-fwhm1 = c()
-fwhm2 = c()
-peak1 = c()
-peak2 = c()
-i1 = c()
-i2 = c()
-
-for (i in 20:sesiones) {
-  R1 = sL[[i]][['R1p']][ ,1:180]
-  R2 = sL[[i]][['R2p']][ ,1:180]
-  
-  Wn1 = sL[[i]][['Wn1']][1:180]
-  # Wn2 = sL[[i]][['Wn2']][1:180]
-  iriD = sL[[i]][['iri1']]
-  iriIm = sL[[i]][['iri2']]
-  
-  i1 = c(i1, iriD)
-  i2 = c(i2, iriIm)
-  
-  sumsR1 = colSums(R1)
-  sumsR2 = colSums(R2)
-  
-  d1 = density(sumsR1)
-  d2 = density(sumsR2)
-  
-  ft1 = fwhm(d1$x, d1$y)
-  ft2 = fwhm(d2$x, d2$y)
-  
-  fwhm1 = c(fwhm1, ft1$fwhm)
-  peak1 = c(peak1, ft1$peak)
-  
-  fwhm2 = c(fwhm2, ft2$fwhm)
-  peak2 = c(peak2, ft2$peak)
-  
-  dfTmp = data.frame(bin = 1:180,
-                     R1 = sumsR1,
-                     R2 = sumsR2,
-                     Wn1 = Wn1,
-                     #Wn2 = Wn2,
-                     sesion = i)
-  df = rbind(df, dfTmp)
-}
-
-df_summary = df %>%
-  group_by(bin) %>%
-  summarise(r1 = mean(R1) / 180,
-            r2 = mean(R2) / 180,
-            wn1 = mean(Wn1)) # ,wn2 = mean(Wn2)
 
 pdf('DiffRate.pdf', width = 6, height = 6, pointsize = 12)
 
