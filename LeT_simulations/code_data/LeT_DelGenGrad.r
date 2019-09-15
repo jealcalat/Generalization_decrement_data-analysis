@@ -83,7 +83,7 @@ df_summary = df %>%
 ## Same rate lambda for both components
 
 wn_vector = numeric(n)
-sesiones = 100
+sesiones = 50
 sL = vector('list', sesiones)
 
 for (j in 1:sesiones) {
@@ -105,7 +105,7 @@ peak2 = c()
 i1 = c()
 i2 = c()
 
-for (i in 20:sesiones) {
+for (i in 1:sesiones) {
   R1 = sL[[i]][[3]][ ,1:180]
   R2 = sL[[i]][[4]][ ,1:180]
   
