@@ -15,7 +15,7 @@ n = tpeak * 3
 params = c(n, mu, sd, alpha, beta, W0, theta, pfood)
 
 wn_vector = numeric(n)
-sesiones = 100
+sesiones = 50
 sL = vector('list', sesiones)
 
 for (j in 1:sesiones) {
