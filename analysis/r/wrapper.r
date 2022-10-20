@@ -1,21 +1,23 @@
 ## Wrapper of functions and pcks
-# 
+#
 # Erase all in memory
 rm(list = ls())
 # ==============================================================================
 # WARNING: this will install packages (laste a few minutes)
 
-list.of.packages <- c('tidyverse', 'data.table','cluster','gridExtra',
-                      'ggthemes','grid','magrittr','latex2exp')
+list.of.packages <- c(
+  "tidyverse", "data.table", "cluster", "gridExtra",
+  "ggthemes", "grid", "magrittr", "latex2exp"
+)
 
-new.packages <- list.of.packages[!(list.of.packages %in% 
-                                     installed.packages()[,"Package"])]
+new.packages <- list.of.packages[!(list.of.packages %in%
+  installed.packages()[, "Package"])]
 
 # Install packages
 
 if (length(new.packages)) {
   install.packages(new.packages)
-  }
+}
 
 # Load packages at once
 sapply(list.of.packages, library, character.only = T)
@@ -26,17 +28,17 @@ sapply(list.of.packages, library, character.only = T)
 
 # Special function to use + as a string concatenator
 
-"+" = function(x,y) {
+"+" <- function(x, y) {
   if (is.character(x) || is.character(y)) {
-    return(paste(x , y, sep=""))
+    return(paste(x, y, sep = ""))
   } else {
-    .Primitive("+")(x,y)
+    .Primitive("+")(x, y)
   }
 }
 
 # Change this to match the parent directory of main folder
-home = "~/Documentos/2019A/"
-path_functions = home + "paper_gen_decrement/analysis/r/"
+home <- ""
+path_functions <- home + "analysis/r/"
 
 ## For data wrangling and transformation
 source(path_functions + "last_n_ses.r")
@@ -56,7 +58,7 @@ source(path_functions + "f_table.r")
 source(path_functions + "get_bins.r")
 source(path_functions + "expand-grid-jc.r")
 source(path_functions + "resp_times.r")
-## FWHM 
+## FWHM
 source(path_functions + "fwhm.r")
 
 ## Kullback-Leibler divergence

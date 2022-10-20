@@ -5,17 +5,17 @@
 ## also, it will load several custum functions without which ANYTHING below
 ## will work as expected.
 
-source("~/Documentos/2019A/paper_gen_decrement/analysis/r/wrapper.r")
+source("analysis/r/wrapper.r")
 
 # Paths for processed data. Check raw2processed_proc.r ----
 
-path_read.general = "~/Documentos/2019A/paper_gen_decrement/Data/"
+path_read.general = "/data_input/"
 path_read.BL = path_read.general + "processed/baseline"
 path_read.EXP = path_read.general + "processed/experimental"
 
 # Paths for results of analysis (data_results) ----
 
-path_save.general = "~/Documentos/2019A/paper_gen_decrement/analysis/"
+path_save.general = "/analysis/"
 path_save.data = path_save.general + "data_results/"
 
 # ETC
